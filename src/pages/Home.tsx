@@ -103,7 +103,7 @@ export default function HomePage() {
 
   return (
     <Layout username={username}>
-      <section className="home-section">
+      {/* <section className="home-section"> */}
         <h1 className="home-greeting">Welcome back, {username}!</h1>
 
         {/* Recommended */}
@@ -143,7 +143,7 @@ export default function HomePage() {
             </button>
           </div>
         </div>
-      </section>
+      {/* </section> */}
     </Layout>
   );
 }

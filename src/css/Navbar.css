@@ -2,7 +2,8 @@
   background: var(--bg-card);
   border: 3px solid var(--border);
   border-radius: var(--radius-card);
-  margin: 12px 16px;
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 .navbar-inner {

@@ -1,0 +1,106 @@
+/* .contact-card {
+  background: var(--bg-card);
+  border: 3px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 40px 36px 36px;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: auto;
+} */
+.contact-card{
+    margin: 0 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.contact-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.contact-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.contact-textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 16px 18px;
+  background: var(--bg-section);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+  line-height: 1.6;
+}
+
+.contact-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.contact-textarea:focus {
+  border-color: var(--accent);
+}
+
+.contact-success {
+  width: 100%;
+  padding: 11px 16px;
+  background: #1a3a1a;
+  border: 2px solid #3a7a3a;
+  border-radius: var(--radius-sm);
+  color: #7eff7e;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.contact-send-btn {
+  padding: 13px 64px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.contact-send-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+.contact-send-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .contact-card {
+    padding: 28px 18px 24px;
+  }
+
+  .contact-title {
+    font-size: 26px;
+  }
+}

@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
+import Contact from './pages/Contact';
 
 
 export default function App() {
@@ -15,7 +16,8 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/login" element={<Login />} />
-<Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );

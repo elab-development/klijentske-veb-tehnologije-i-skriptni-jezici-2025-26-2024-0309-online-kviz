@@ -1,7 +1,9 @@
 .layout-main {
-  flex: 1;
-  padding: 0 16px 8px;
+  background: var(--bg-card);
+  border: 3px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px 28px 28px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 28px;
 }
