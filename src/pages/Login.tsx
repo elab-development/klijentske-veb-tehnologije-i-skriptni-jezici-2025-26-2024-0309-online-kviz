@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Auth.css';
 
-export default function Register() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log('Register:', { email, password });
+    console.log('Login:', { email, password });
   };
 
   return (
@@ -19,7 +19,7 @@ export default function Register() {
             <img src="/src/assets/logo.png" alt="QuizMaster logo" className="logo-img" />
             <span className="logo-text">Quiz<br />Master</span>
           </div>
-          <h1 className="auth-title">Register</h1>
+          <h1 className="auth-title">Login</h1>
         </div>
 
         <div className="auth-form">
@@ -38,7 +38,7 @@ export default function Register() {
             onChange={e => setPassword(e.target.value)}
           />
           <button className="auth-btn" onClick={handleSubmit}>
-            Register
+            Login
           </button>
 
           <div className="auth-divider"><span>or</span></div>
@@ -51,12 +51,13 @@ export default function Register() {
               <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
               <path fill="none" d="M0 0h48v48H0z"/>
             </svg>
-            Register with Google
+            Continue with Google
           </button>
         </div>
 
         <div className="auth-footer">
-          <p>Have an account? <Link to="/login" className="auth-link">Login here</Link></p>
+          <p>Don't have an account? <Link to="/register" className="auth-link">Register here</Link></p>
+          <p>Forgot password? <Link to="/forgotpassword" className="auth-link">Click here</Link></p>
         </div>
       </div>
     </div>
