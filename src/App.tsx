@@ -8,6 +8,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import Contact from './pages/Contact';
 import Profile from './pages/Profile';
 import ChangePassword from './pages/ChangePassword';
+import Browse from './pages/Browse';
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/browse" element={<Browse />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/changepassword" element={<ChangePassword />} />
