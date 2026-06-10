@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../css/Auth.css';
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
+    navigate('/');
     console.log('Login:', { email, password });
   };
+
 
   return (
     <div className="auth-bg">
@@ -37,6 +40,7 @@ export default function Login() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+
           <button className="auth-btn" onClick={handleSubmit}>
             Login
           </button>
