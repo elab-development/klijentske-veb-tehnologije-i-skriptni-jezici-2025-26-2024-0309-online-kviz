@@ -17,11 +17,11 @@ export default function QuizCard({ quiz }: QuizCardProps) {
         )}
       </div>
       <div className="quiz-card-meta">
-        <span className="quiz-card-rating">☆ {quiz.rating}/{quiz.maxRating}</span>
+        <span className="quiz-card-rating">☆ {quiz.rating}/10</span>
         <span className="quiz-card-author">Author: {quiz.author}</span>
       </div>
       <h3 className="quiz-card-title">{quiz.title}</h3>
-      <p className="quiz-card-desc">{quiz.description}</p>
+      <p className="quiz-card-desc">{quiz.shortDescription}</p>
       <span className="quiz-card-count">{quiz.questionCount} questions</span>
     </Link>
   );

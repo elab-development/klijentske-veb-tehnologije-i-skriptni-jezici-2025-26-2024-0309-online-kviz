@@ -13,37 +13,37 @@ const user = {
 const RECENTQUIZZES: Quiz[] = [
   {
     id: 1,
-    title: 'Klijentske veb tehnologije',
-    description: 'Proverite svoje znanje iz osnova frontend developmenta',
-    author: 'ELAB',
+    title: 'prvi',
+    shortDescription: 'Every player should know these facts.',
+    longDescription: '',
+    author: 'SuperKillerMan',
     rating: 10,
-    maxRating: 10,
     questionCount: 20,
-    // imageUrl: '/src/assets/elab.png',
-    type: 'form' as const,
+    type: 'form',
+    categories: []
   },
   {
     id: 2,
-    title: 'Ekonomija',
-    description: 'Proverite svoje znanje iz ekonomije',
-    author: 'John Keynes',
-    rating: 2,
-    maxRating: 10,
+    title: 'drugi',
+    shortDescription: 'Proverite svoje znanje iz ekonomije.',
+    longDescription: '',
+    author: 'Z',
+    rating: 5,
     questionCount: 15,
-    // imageUrl: '/src/assets/ekonomija.png',
-    type: 'form' as const,
+    type: 'form',
+    categories: []
   },
   {
     id: 3,
-    title: 'AROS - flashcards',
-    description: 'Brzi kviz iz AROS-a za ispit i kolokvijume',
-    author: 'Admin',
+    title: 'treci',
+    shortDescription: 'Detailed history quiz for WWII.',
+    longDescription: '',
+    author: 'Historian',
     rating: 8,
-    maxRating: 10,
-    questionCount: 60,
-    // imageUrl: '/src/assets/aros.png',
-    type: 'flashcards' as const,
-  },
+    questionCount: 50,
+    type: 'form',
+    categories: []
+  }
 ];
 
 export default function Profile() {
