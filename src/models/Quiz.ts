@@ -1,8 +1,9 @@
+import type { Question } from './Question';
+import type { Flashcard } from './Flashcard';
+
 export type QuizType = 'form' | 'flashcards';
 
-
-
-export interface Quiz {
+interface BaseQuiz {
   id: number;
   title: string;
   shortDescription: string;
@@ -10,9 +11,20 @@ export interface Quiz {
   author: string;
   rating: number;
   questionCount: number;
-  type: QuizType;
   categories: string[];
   imageUrl?: string;
   language?: string;
-  timeLimit?: number; //u sekundama
+  timeLimit?: number;
 }
+
+export interface FormQuiz extends BaseQuiz {
+  type: 'form';
+  questions: Question[];
+}
+
+export interface FlashcardsQuiz extends BaseQuiz {
+  type: 'flashcards';
+  cards: Flashcard[];
+}
+
+export type Quiz = FormQuiz | FlashcardsQuiz;
