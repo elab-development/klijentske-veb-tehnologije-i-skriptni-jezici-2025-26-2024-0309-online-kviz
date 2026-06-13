@@ -10,6 +10,8 @@ import Profile from './pages/Profile';
 import ChangePassword from './pages/ChangePassword';
 import Browse from './pages/Browse';
 import QuizStart from './pages/QuizStart';
+import QuizPlay from './pages/QuizPlay';
+import QuizResult from './pages/QuizResult';
 
 
 export default function App() {
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/quiz/:id" element={<QuizStart />} />
+        <Route path="/quiz/:id/play" element={<QuizPlay />} />
+        <Route path="/quiz/:id/result" element={<QuizResult />} />
       </Routes>
     </BrowserRouter>
   );

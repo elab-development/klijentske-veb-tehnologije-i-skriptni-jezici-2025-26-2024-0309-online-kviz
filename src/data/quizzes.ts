@@ -1,4 +1,70 @@
 import type { Quiz } from '../models/Quiz';
+import type { Question } from '../models/Question';
+import type { Flashcard } from '../models/Flashcard';
+
+const generalKnowledgeQuestions: Question[] = [
+  {
+    id: 1,
+    type: 'single_choice',
+    text: 'What is the capital of Argentina?',
+    correctAnswer: 'Buenos Aires',
+    wrongOptions: ['Montevideo', 'Rio de Janeiro', 'Madrid', 'Ciudad de Argentina'],
+  },
+  {
+    id: 2,
+    type: 'multiple_choice',
+    text: 'Which of the following are NOT states of matter?',
+    correctAnswers: ['Quark', 'Particle'],
+    wrongOptions: ['Plasma', 'Liquid', 'Solid'],
+  },
+  {
+    id: 3,
+    type: 'text',
+    text: 'What year did the moon landing happen?',
+    correctAnswers: ['1969'],
+  },
+  {
+    id: 4,
+    type: 'text',
+    text: 'What was the first civilization?',
+    correctAnswers: ['Mesopotamia, Mesopotamian civilization'],
+  },
+  {
+    id: 5,
+    type: 'multiple_choice',
+    text: 'Which animals are mammals?',
+    correctAnswers: ['Dog', 'Cow', 'Dolphin'],
+    wrongOptions: ['Eagle', 'Chicken'],
+  },
+];
+
+const arosCards: Flashcard[] = [
+  {
+    id: 1,
+    front: 'Šta je AROS?',
+    back: 'AROS (Amiga Research OS) je open-source operativni sistem kompatibilan sa AmigaOS 3.1 API-jem.',
+  },
+  {
+    id: 2,
+    front: 'Koji je osnovni zadatak operativnog sistema?',
+    back: 'Upravljanje hardverskim resursima računara i pružanje servisa korisničkim programima.',
+  },
+  {
+    id: 3,
+    front: 'Šta je proces?',
+    back: 'Program u izvršavanju — instanca programa zajedno sa stanjem izvršavanja (programski brojač, registri, stek).',
+  },
+  {
+    id: 4,
+    front: 'Razlika između procesa i niti (thread)?',
+    back: 'Procesi imaju odvojene adresne prostore, niti dele adresni prostor istog procesa.',
+  },
+  {
+    id: 5,
+    front: 'Šta je deadlock?',
+    back: 'Situacija u kojoj dva ili više procesa čekaju jedan na drugog da oslobodi resurs, pa nijedan ne može da nastavi.',
+  },
+];
 
 export const ALL_QUIZZES: Quiz[] = [
   {
@@ -10,10 +76,10 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 7,
     questionCount: 5,
     type: 'form',
-    questions: [],
     categories: ['General', 'History', 'Biology'],
     language: 'ENG',
     timeLimit: 300,
+    questions: generalKnowledgeQuestions,
   },
   {
     id: 2,
@@ -24,9 +90,9 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 10,
     questionCount: 20,
     type: 'form',
-    questions: [],
     categories: ['Gaming'],
     language: 'ENG',
+    questions: [],
   },
   {
     id: 3,
@@ -37,10 +103,10 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 8,
     questionCount: 50,
     type: 'form',
-    questions: [],
     categories: ['History'],
     language: 'ENG',
     timeLimit: 600,
+    questions: [],
   },
   {
     id: 4,
@@ -51,10 +117,10 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 10,
     questionCount: 100,
     type: 'form',
-    questions: [],
     categories: ['English', 'IT'],
     language: 'ENG',
     timeLimit: 1200,
+    questions: [],
   },
   {
     id: 5,
@@ -65,9 +131,9 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 2,
     questionCount: 15,
     type: 'form',
-    questions: [],
     categories: ['Economics', 'Finances'],
     language: 'SRB',
+    questions: [],
   },
   {
     id: 6,
@@ -76,11 +142,11 @@ export const ALL_QUIZZES: Quiz[] = [
     longDescription: 'Flashcards kviz za studente FON-a koji spremaju AROS. Ima pitanja za oba kolokvijuma.',
     author: 'Admin',
     rating: 8,
-    questionCount: 120,
+    questionCount: 5,
     type: 'flashcards',
-    cards: [],
     categories: ['IT', 'School'],
     language: 'SRB',
+    cards: arosCards,
   },
   {
     id: 7,
@@ -91,9 +157,9 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 5,
     questionCount: 15,
     type: 'form',
-    questions: [],
     categories: ['Finances', 'Accounting'],
     language: 'SRB',
+    questions: [],
   },
   {
     id: 8,
@@ -104,9 +170,9 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 9,
     questionCount: 30,
     type: 'form',
-    questions: [],
     categories: ['Geography'],
     language: 'SRB',
+    questions: [],
   },
   {
     id: 9,
@@ -117,9 +183,9 @@ export const ALL_QUIZZES: Quiz[] = [
     rating: 7,
     questionCount: 30,
     type: 'form',
-    questions: [],
     categories: ['Music', 'Culture'],
     language: 'ENG',
+    questions: [],
   },
 ];
 
