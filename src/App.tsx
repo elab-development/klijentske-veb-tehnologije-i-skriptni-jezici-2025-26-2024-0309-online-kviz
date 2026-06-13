@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Profile from './pages/Profile';
 import ChangePassword from './pages/ChangePassword';
 import Browse from './pages/Browse';
+import QuizStart from './pages/QuizStart';
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/quiz/:id" element={<QuizStart />} />
       </Routes>
     </BrowserRouter>
   );
