@@ -132,3 +132,31 @@
     width: 100%;
   }
 }
+
+.quiz-start-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.quiz-start-btn-back {
+  padding: 14px 24px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.quiz-start-btn-back:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+.quiz-start-btn-back:active {
+  transform: translateY(0);
+}

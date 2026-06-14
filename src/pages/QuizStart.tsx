@@ -69,12 +69,14 @@ export default function QuizStart() {
           <p className="quiz-start-long-desc">{quiz.longDescription}</p>
         </div>
 
-        <button
-          className="quiz-start-btn"
-          onClick={() => navigate(`/quiz/${quiz.id}/play`)}
-        >
-          Start answering {quiz.questionCount} questions
-        </button>
+        <div className="quiz-start-actions">
+          <button className="quiz-start-btn-back" onClick={() => navigate(`/`)}>
+            ← Back
+          </button>
+          <button className="quiz-start-btn" onClick={() => navigate(`/quiz/${quiz.id}/play`)}>
+            Start answering {quiz.questionCount} questions
+          </button>
+        </div>
       </div>
     </Layout>
   );

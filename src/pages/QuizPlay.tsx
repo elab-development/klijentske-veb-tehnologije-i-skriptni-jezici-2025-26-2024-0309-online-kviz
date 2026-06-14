@@ -153,13 +153,15 @@ export default function QuizPlay() {
           })}
         </div>
 
-        <button
-          className="quiz-play-submit"
-          onClick={handleSubmit}
-          // disabled={!isAllAnswered}
-        >
-          Submit
-        </button>
+        <div className="quiz-play-actions">
+          <button className="quiz-play-submit" onClick={handleSubmit}>
+            Submit
+          </button>
+
+          <button className="quiz-play-exit" onClick={() => navigate(`/quiz/${id}`)}>
+            ⚠️ Exit without saving
+          </button>
+        </div>
       </div>
     </Layout>
   );
