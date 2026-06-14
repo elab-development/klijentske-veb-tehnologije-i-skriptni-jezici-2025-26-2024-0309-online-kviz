@@ -136,3 +136,106 @@
   font-weight: 600;
   padding: 40px 0;
 }
+
+.result-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.result-question-card {
+  background: var(--bg-card-inner);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.result-question--correct { border-color: #4ade80; }
+.result-question--partial  { border-color: #facc15; }
+.result-question--wrong    { border-color: #f87171; }
+
+.result-question-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.result-question-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--accent-dim);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+}
+
+.result-question-correct-answer {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.result-question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-question-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 2px 0;
+  user-select: none;
+}
+
+.result-question-option input[type='checkbox'] {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.result-exit-btn {
+  padding: 14px 48px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.result-exit-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+.result-exit-btn:active {
+  transform: translateY(0);
+}
+
+.result-question-option input[type='radio'] {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
