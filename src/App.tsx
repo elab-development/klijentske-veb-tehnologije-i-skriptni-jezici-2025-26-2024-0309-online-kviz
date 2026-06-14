@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './context/UserContext';
 import './index.css';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -17,22 +18,24 @@ import QuizFlashcard from './pages/QuizFlashcard';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/browse" element={<Browse />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/changepassword" element={<ChangePassword />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/quiz/:id" element={<QuizStart />} />
-        <Route path="/quiz/:id/play" element={<QuizPlay />} />
-        <Route path="/quiz/:id/flashcards" element={<QuizFlashcard />} />
-        <Route path="/quiz/:id/result" element={<QuizResult />} />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/quiz/:id" element={<QuizStart />} />
+          <Route path="/quiz/:id/play" element={<QuizPlay />} />
+          <Route path="/quiz/:id/flashcards" element={<QuizFlashcard />} />
+          <Route path="/quiz/:id/result" element={<QuizResult />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   );
 }

@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import '../css/Auth.css';
 
 export default function Register() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-     navigate('/');
-    console.log('Register:', { email, password });
+    const username = email.split('@')[0];
+    setUser({ username, email });
+    navigate('/');
   };
 
   return (

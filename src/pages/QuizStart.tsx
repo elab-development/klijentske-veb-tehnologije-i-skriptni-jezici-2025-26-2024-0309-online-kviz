@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { ALL_QUIZZES } from '../data/quizzes';
@@ -14,21 +13,12 @@ function formatTimeLimit(seconds?: number): string {
 export default function QuizStart() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-
-  useEffect(() => {
-    const stored = localStorage.getItem('qm_user');
-    if (stored) {
-      const user = JSON.parse(stored);
-      setUsername(user.username ?? 'User');
-    }
-  }, []);
 
   const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
 
   if (!quiz) {
     return (
-      <Layout username={username}>
+      <Layout>
         <p className="quiz-start-not-found">Quiz not found.</p>
       </Layout>
     );
@@ -37,7 +27,7 @@ export default function QuizStart() {
   const quizType = quiz.type === 'flashcards' ? 'Flashcards' : 'Form';
 
   return (
-    <Layout username={username}>
+    <Layout>
       <div className="quiz-start">
         <h1 className="quiz-start-title">{quiz.title}</h1>
 
@@ -70,7 +60,7 @@ export default function QuizStart() {
         </div>
 
         <div className="quiz-start-actions">
-          <button className="quiz-start-btn-back" onClick={() => navigate(`/`)}>
+          <button className="quiz-start-btn-back" onClick={() => navigate(-1)}>
             ← Back
           </button>
           <button

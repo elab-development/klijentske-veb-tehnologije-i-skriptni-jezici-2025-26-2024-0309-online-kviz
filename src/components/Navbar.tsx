@@ -1,11 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import '../css/Navbar.css';
 
-interface NavbarProps {
-  username?: string;
-}
-
-export default function Navbar({ username = 'Pera' }: NavbarProps) {
+export default function Navbar() {
+  const { user } = useUser();
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -38,7 +36,7 @@ export default function Navbar({ username = 'Pera' }: NavbarProps) {
 
         <Link to="/profile" className="navbar-profile">
           <div className="profile-text">
-            <span className="profile-welcome">Welcome, {username}!</span>
+            <span className="profile-welcome">Welcome, {user?.username ?? 'Guest'}!</span>
             <span className="profile-link">Go to profile</span>
           </div>
           <div className="profile-avatar">

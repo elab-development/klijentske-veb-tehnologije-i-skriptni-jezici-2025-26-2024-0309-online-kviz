@@ -13,29 +13,20 @@ function formatTime(seconds: number): string {
 export default function QuizFlashcard() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-
-  const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
-
-  useEffect(() => {
-    const stored = localStorage.getItem('qm_user');
-    if (stored) {
-      const user = JSON.parse(stored);
-      setUsername(user.username ?? 'User');
-    }
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setElapsed(e => e + 1), 1000);
     return () => clearInterval(timer);
   }, []);
 
+  const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
+
   if (!quiz) {
     return (
-      <Layout username={username}>
+      <Layout>
         <p className="flashcard-error">Quiz not found.</p>
       </Layout>
     );
@@ -43,7 +34,7 @@ export default function QuizFlashcard() {
 
   if (quiz.type !== 'flashcards') {
     return (
-      <Layout username={username}>
+      <Layout>
         <p className="flashcard-error">This quiz uses the form player.</p>
       </Layout>
     );
@@ -65,9 +56,11 @@ export default function QuizFlashcard() {
   }
 
   return (
-    <Layout username={username}>
+    <Layout>
       <div className="flashcard-page">
         <h1 className="flashcard-title">{quiz.title}</h1>
+
+        <p className="flashcard-progress">{currentIndex + 1} / {cards.length}</p>
 
         <div className="flashcard-scene" onClick={() => setIsFlipped(f => !f)}>
           <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`} key={currentIndex}>
@@ -79,6 +72,8 @@ export default function QuizFlashcard() {
             </div>
           </div>
         </div>
+
+        <p className="flashcard-hint">Click the card to flip</p>
 
         <div className="flashcard-nav">
           <button

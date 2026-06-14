@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { ALL_QUIZZES } from '../data/quizzes';
 import type { Question } from '../models/Question';
 import { QuizResultModel } from '../models/QuizResultModel';
+import { useUser } from '../context/UserContext';
 import '../css/QuizResult.css';
 
 interface ResultState {
@@ -104,7 +105,26 @@ export default function QuizResult() {
   const [hoverRating, setHoverRating] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
 
+  const { addQuizResult } = useUser();
+  const savedRef = useRef(false);
+
   const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
+
+  useEffect(() => {
+    if (savedRef.current || !quiz || quiz.type !== 'form' || !state) return;
+    savedRef.current = true;
+    const result = new QuizResultModel(quiz, state.answers, state.timeElapsed, state.timeRemaining);
+    const score = result.getScore();
+    addQuizResult({
+      quizId: quiz.id,
+      quizTitle: quiz.title,
+      scorePercent: result.getScorePercent(),
+      correct: score.correct,
+      total: score.total,
+      timeElapsed: state.timeElapsed,
+      date: new Date().toISOString(),
+    });
+  }, []);
 
   if (!quiz || !state) {
     return (

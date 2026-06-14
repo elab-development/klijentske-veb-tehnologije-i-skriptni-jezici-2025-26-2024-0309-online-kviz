@@ -19,7 +19,6 @@ function formatTime(seconds: number): string {
 export default function QuizPlay() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
   const [session, setSession] = useState<IQuizSession>(() => new QuizSession());
 
   const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
@@ -40,14 +39,6 @@ export default function QuizPlay() {
     }
     return result;
   });
-
-  useEffect(() => {
-    const stored = localStorage.getItem('qm_user');
-    if (stored) {
-      const user = JSON.parse(stored);
-      setUsername(user.username ?? 'User');
-    }
-  }, []);
 
   useEffect(() => {
     if (timeRemaining === null || timeRemaining <= 0) return;
@@ -72,7 +63,7 @@ export default function QuizPlay() {
 
   if (!quiz) {
     return (
-      <Layout username={username}>
+      <Layout>
         <p className="quiz-play-error">Quiz not found.</p>
       </Layout>
     );
@@ -80,7 +71,7 @@ export default function QuizPlay() {
 
   if (quiz.type !== 'form') {
     return (
-      <Layout username={username}>
+      <Layout>
         <p className="quiz-play-error">This quiz uses the flashcard player.</p>
       </Layout>
     );
@@ -107,7 +98,7 @@ export default function QuizPlay() {
   }
 
   return (
-    <Layout username={username}>
+    <Layout>
       {timeRemaining !== null && (
         <div className="quiz-play-timer">! {formatTime(timeRemaining)}</div>
       )}

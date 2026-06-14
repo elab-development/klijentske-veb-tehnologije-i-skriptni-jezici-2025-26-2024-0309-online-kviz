@@ -5,13 +5,12 @@ import '../css/Layout.css';
 
 interface LayoutProps {
   children: ReactNode;
-  username?: string;
 }
 
-export default function Layout({ children, username }: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Navbar username={username} />
+      <Navbar />
       <main className="layout-main">
         {children}
       </main>

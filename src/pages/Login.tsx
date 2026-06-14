@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import '../css/Auth.css';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
+    const username = email.split('@')[0];
+    setUser({ username, email });
     navigate('/');
-    console.log('Login:', { email, password });
   };
-
 
   return (
     <div className="auth-bg">
