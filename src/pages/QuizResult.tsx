@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { ALL_QUIZZES } from '../data/quizzes';
 import type { Question } from '../models/Question';
+import { QuizResultModel } from '../models/QuizResultModel';
 import '../css/QuizResult.css';
 
 interface ResultState {
@@ -12,36 +13,15 @@ interface ResultState {
   timeRemaining: number | null;
 }
 
-type Grade = 'correct' | 'partial' | 'wrong';
-
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-function gradeQuestion(question: Question, answer: string | string[] | undefined): Grade {
-  if (question.type === 'text') {
-    const userAnswer = ((answer as string) ?? '').trim().toLowerCase();
-    return question.correctAnswers.some(a => a.toLowerCase() === userAnswer) ? 'correct' : 'wrong';
-  }
-  if (question.type === 'single_choice') {
-    return answer === question.correctAnswer ? 'correct' : 'wrong';
-  }
-  if (question.type === 'multiple_choice') {
-    const userAnswers = (answer as string[]) ?? [];
-    const correctSet = new Set(question.correctAnswers);
-    const selectedCorrect = userAnswers.filter(a => correctSet.has(a));
-    const selectedWrong = userAnswers.filter(a => !correctSet.has(a));
-    if (selectedCorrect.length === question.correctAnswers.length && selectedWrong.length === 0) return 'correct';
-    if (selectedCorrect.length === 0) return 'wrong';
-    return 'partial';
-  }
-  return 'wrong';
-}
-
-function QuestionResult({ question, answer }: { question: Question; answer: string | string[] | undefined }) {
-  const grade = gradeQuestion(question, answer);
+function QuestionResult({ question, result }: { question: Question; result: QuizResultModel }) {
+  const grade = result.gradeQuestion(question.id);
+  const answer = result.getAnswer(question.id);
   const gradeClass = grade === 'correct'
     ? 'result-question--correct'
     : grade === 'partial'
@@ -137,15 +117,22 @@ export default function QuizResult() {
   const displayRating = hoverRating || rating;
 
   if (showDetails && quiz.type === 'form') {
+    const result = new QuizResultModel(quiz, state.answers, state.timeElapsed, state.timeRemaining);
+    const score = result.getScore();
+
     return (
       <Layout>
         <div className="quiz-result">
           <h1 className="quiz-result-title">{quiz.title}</h1>
           <p className="quiz-result-author">Author: {quiz.author}</p>
 
+          <p className="result-score">
+            Score: {result.getScorePercent()}% &nbsp;·&nbsp; {score.correct}/{score.total} correct
+          </p>
+
           <div className="result-details">
             {quiz.questions.map(q => (
-              <QuestionResult key={q.id} question={q} answer={state.answers[q.id]} />
+              <QuestionResult key={q.id} question={q} result={result} />
             ))}
 
             <button className="result-exit-btn" onClick={() => setShowDetails(false)}>

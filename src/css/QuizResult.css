@@ -137,6 +137,14 @@
   padding: 40px 0;
 }
 
+.result-score {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: -8px;
+}
+
 .result-details {
   display: flex;
   flex-direction: column;

@@ -6,9 +6,9 @@ import SingleChoiceQuestionComponent from '../components/questions/SingleChoiceQ
 import MultipleChoiceQuestionComponent from '../components/questions/MultipleChoiceQuestion';
 import { ALL_QUIZZES } from '../data/quizzes';
 import { shuffle } from '../utils/shuffle';
+import { QuizSession } from '../models/QuizSession';
+import type { IQuizSession } from '../models/IQuizSession';
 import '../css/QuizPlay.css';
-
-type Answers = Record<number, string | string[]>;
 
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
@@ -20,8 +20,7 @@ export default function QuizPlay() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
-  const [answers, setAnswers] = useState<Answers>({});
-  const [startTime] = useState(() => Date.now());
+  const [session, setSession] = useState<IQuizSession>(() => new QuizSession());
 
   const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
 
@@ -62,7 +61,12 @@ export default function QuizPlay() {
     if (timeRemaining !== 0) return;
     if (!quiz || quiz.type !== 'form') return;
     navigate(`/quiz/${id}/result`, {
-      state: { quizId: Number(id), answers, timeElapsed: quiz.timeLimit ?? 0, timeRemaining: 0 },
+      state: {
+        quizId: Number(id),
+        answers: session.getAllAnswers(),
+        timeElapsed: quiz.timeLimit ?? 0,
+        timeRemaining: 0,
+      },
     });
   }, [timeRemaining]);
 
@@ -82,27 +86,24 @@ export default function QuizPlay() {
     );
   }
 
-  // const isAllAnswered = quiz.questions.length > 0 && quiz.questions.every(q => {
-  //   const answer = answers[q.id];
-  //   if (q.type === 'text') return typeof answer === 'string' && answer.trim() !== '';
-  //   if (q.type === 'single_choice') return typeof answer === 'string';
-  //   if (q.type === 'multiple_choice') return Array.isArray(answer) && answer.length > 0;
-  //   return false;
-  // });
-
   function handleSubmit() {
     if (!quiz || quiz.type !== 'form') return;
     const initialTime = quiz.timeLimit ?? null;
     const timeElapsed = initialTime !== null && timeRemaining !== null
       ? initialTime - timeRemaining
-      : Math.floor((Date.now() - startTime) / 1000);
+      : session.getTimeElapsed();
     navigate(`/quiz/${id}/result`, {
-      state: { quizId: Number(id), answers, timeElapsed, timeRemaining },
+      state: {
+        quizId: Number(id),
+        answers: session.getAllAnswers(),
+        timeElapsed,
+        timeRemaining,
+      },
     });
   }
 
   function setAnswer(questionId: number, value: string | string[]) {
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
+    setSession(prev => prev.setAnswer(questionId, value));
   }
 
   return (
@@ -122,7 +123,7 @@ export default function QuizPlay() {
                 <TextQuestionComponent
                   key={q.id}
                   question={q}
-                  value={(answers[q.id] as string) ?? ''}
+                  value={(session.getAnswer(q.id) as string) ?? ''}
                   onChange={val => setAnswer(q.id, val)}
                 />
               );
@@ -133,7 +134,7 @@ export default function QuizPlay() {
                   key={q.id}
                   question={q}
                   options={shuffledOptions[q.id] ?? []}
-                  value={(answers[q.id] as string) ?? null}
+                  value={(session.getAnswer(q.id) as string) ?? null}
                   onChange={val => setAnswer(q.id, val)}
                 />
               );
@@ -144,7 +145,7 @@ export default function QuizPlay() {
                   key={q.id}
                   question={q}
                   options={shuffledOptions[q.id] ?? []}
-                  value={(answers[q.id] as string[]) ?? []}
+                  value={(session.getAnswer(q.id) as string[]) ?? []}
                   onChange={val => setAnswer(q.id, val)}
                 />
               );
@@ -157,7 +158,6 @@ export default function QuizPlay() {
           <button className="quiz-play-submit" onClick={handleSubmit}>
             Submit
           </button>
-
           <button className="quiz-play-exit" onClick={() => navigate(`/quiz/${id}`)}>
             ⚠️ Exit without saving
           </button>

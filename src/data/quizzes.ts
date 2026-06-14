@@ -27,7 +27,7 @@ const generalKnowledgeQuestions: Question[] = [
     id: 4,
     type: 'text',
     text: 'What was the first civilization?',
-    correctAnswers: ['Mesopotamia, Mesopotamian civilization'],
+    correctAnswers: ['Mesopotamia', 'Mesopotamian civilization'],
   },
   {
     id: 5,
