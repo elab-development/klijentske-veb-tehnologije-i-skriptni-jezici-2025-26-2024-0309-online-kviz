@@ -41,8 +41,8 @@ const generalKnowledgeQuestions: Question[] = [
 const arosCards: Flashcard[] = [
   {
     id: 1,
-    front: 'Šta je AROS?',
-    back: 'AROS (Amiga Research OS) je open-source operativni sistem kompatibilan sa AmigaOS 3.1 API-jem.',
+    front: 'Ko je napravio Linux kernel?',
+    back: 'Linus Torvalds.',
   },
   {
     id: 2,

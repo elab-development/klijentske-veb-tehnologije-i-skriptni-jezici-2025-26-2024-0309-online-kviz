@@ -73,8 +73,11 @@ export default function QuizStart() {
           <button className="quiz-start-btn-back" onClick={() => navigate(`/`)}>
             ← Back
           </button>
-          <button className="quiz-start-btn" onClick={() => navigate(`/quiz/${quiz.id}/play`)}>
-            Start answering {quiz.questionCount} questions
+          <button
+            className="quiz-start-btn"
+            onClick={() => navigate(quiz.type === 'flashcards' ? `/quiz/${quiz.id}/flashcards` : `/quiz/${quiz.id}/play`)}
+          >
+            {quiz.type === 'flashcards' ? `Study ${quiz.questionCount} cards` : `Start answering ${quiz.questionCount} questions`}
           </button>
         </div>
       </div>
