@@ -9,10 +9,13 @@ const CATEGORIES = Array.from(
   new Set(ALL_QUIZZES.flatMap(q => q.categories))
 ).sort();
 
+const PAGE_SIZE = 6;
+
 export default function Browse() {
   const [query, setQuery] = useState('');
   const [categories, setCategories] = useState<string[]>([]);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   const pickerRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +28,10 @@ export default function Browse() {
     document.addEventListener('mousedown', onClick);
     return () => document.removeEventListener('mousedown', onClick);
   }, []);
+
+  useEffect(() => {
+    setPage(1);
+  }, [query, categories]);
 
   const isSearching = query.trim().length > 0 || categories.length > 0;
 
@@ -43,6 +50,9 @@ export default function Browse() {
       return matchesText && matchesCategory;
     });
   }, [query, categories]);
+
+  const totalPages = Math.ceil(results.length / PAGE_SIZE);
+  const pageResults = results.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const availableCategories = CATEGORIES.filter(c => !categories.includes(c));
 
@@ -94,10 +104,31 @@ export default function Browse() {
       </div>
 
       {isSearching ? (
-        results.length > 0 ? (
-          <div className="browse-grid">
-            {results.map(quiz => <QuizCard key={quiz.id} quiz={quiz} />)}
-          </div>
+        pageResults.length > 0 ? (
+          <>
+            <div className="browse-grid">
+              {pageResults.map(quiz => <QuizCard key={quiz.id} quiz={quiz} />)}
+            </div>
+            {totalPages > 1 && (
+              <div className="browse-pagination">
+                <button
+                  className="browse-page-btn"
+                  onClick={() => setPage(p => p - 1)}
+                  disabled={page === 1}
+                >
+                  ← Prev
+                </button>
+                <span className="browse-page-info">{page} / {totalPages}</span>
+                <button
+                  className="browse-page-btn"
+                  onClick={() => setPage(p => p + 1)}
+                  disabled={page === totalPages}
+                >
+                  Next →
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <p className="browse-empty">No quizzes found.</p>
         )
