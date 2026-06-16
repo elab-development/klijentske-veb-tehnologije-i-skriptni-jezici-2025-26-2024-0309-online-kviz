@@ -5,7 +5,8 @@ import Button from '../../components/Button';
 import { useUser } from '../../context/UserContext';
 import { useQuizzes } from '../../context/QuizContext';
 import type { Flashcard } from '../../models/Flashcard';
-import type { FlashcardsQuiz } from '../../models/Quiz';
+import type { FlashcardsQuiz, FormQuiz } from '../../models/Quiz';
+import FormQuestionsEditor from './FormQuestionsEditor';
 import '../../css/QuestionsEditor.css';
 
 export default function QuestionsEditor() {
@@ -31,8 +32,16 @@ export default function QuestionsEditor() {
   if (!quiz) {
     return <Layout><p className="qe-msg qe-msg--error">Quiz not found.</p></Layout>;
   }
-  if (quiz.type !== 'flashcards') {
-    return <Layout><p className="qe-msg">Form editor coming soon.</p></Layout>;
+  if (quiz.type === 'form') {
+    return (
+      <Layout>
+        <FormQuestionsEditor
+          quiz={quiz as FormQuiz}
+          onSave={questions => updateQuiz({ ...(quiz as FormQuiz), questions, questionCount: questions.length })}
+          onExit={() => navigate(`/admin/quiz-editor/${id}`)}
+        />
+      </Layout>
+    );
   }
 
   const card = cards[index];

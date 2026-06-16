@@ -100,10 +100,11 @@ export default function QuizEditor() {
     if (!validate()) return;
     const base = buildBase();
     if (existing) {
-      if (existing.type === 'form') {
-        updateQuiz({ ...existing, ...base, type: 'form' });
+      const typeChanged = existing.type !== quizType;
+      if (quizType === 'form') {
+        updateQuiz({ ...existing, ...base, type: 'form', questions: typeChanged ? [] : (existing.type === 'form' ? existing.questions : []), questionCount: typeChanged ? 0 : existing.questionCount });
       } else {
-        updateQuiz({ ...existing, ...base, type: 'flashcards' });
+        updateQuiz({ ...existing, ...base, type: 'flashcards', cards: typeChanged ? [] : (existing.type === 'flashcards' ? existing.cards : []), questionCount: typeChanged ? 0 : existing.questionCount });
       }
     } else {
       const data = quizType === 'form'
@@ -139,8 +140,6 @@ export default function QuizEditor() {
     navigate('/admin/my-quizzes');
   }
 
-  const canChangeType = isNew || !existing;
-
   return (
     <Layout>
       <div className="qe-page">
@@ -165,7 +164,7 @@ export default function QuizEditor() {
               <select
                 className="qe-select"
                 value={quizType}
-                disabled={!canChangeType}
+                disabled={false}
                 onChange={e => setQuizType(e.target.value as QuizType)}
               >
                 <option value="form">Form</option>
