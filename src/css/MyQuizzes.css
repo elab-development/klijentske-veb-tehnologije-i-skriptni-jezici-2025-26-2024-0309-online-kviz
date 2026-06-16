@@ -28,6 +28,13 @@
   gap: 14px;
 }
 
+@media (max-width: 900px) { .my-quizzes-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .my-quizzes-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) {
+  .my-quizzes-grid { grid-template-columns: 1fr; }
+  .my-quizzes-header { flex-wrap: wrap; gap: 12px; }
+}
+
 .my-quizzes-empty,
 .my-quizzes-unauthorized {
   text-align: center;

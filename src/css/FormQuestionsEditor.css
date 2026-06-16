@@ -309,3 +309,14 @@
 
 /* ── Footer reuse ── */
 /* .qe-footer and .qe-msg are defined in QuizEditor.css (globally loaded) */
+
+@media (max-width: 600px) {
+  .fqe-card { padding: 10px 8px 12px; gap: 6px; }
+  .fqe-type-popup { min-width: 140px; }
+  .fqe-hint-popup { width: 170px; }
+}
+
+@media (max-width: 420px) {
+  .fqe-title { font-size: 18px; }
+  .fqe-card-side { min-height: 36px; }
+}

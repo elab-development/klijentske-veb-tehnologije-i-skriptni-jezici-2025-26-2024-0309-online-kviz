@@ -147,6 +147,14 @@
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .quiz-play-title { font-size: 22px; }
+  .quiz-question-card { padding: 16px 14px; }
+  .quiz-play-submit { width: 100%; padding: 14px 24px; }
+  .quiz-play-actions { flex-direction: column; align-items: stretch; }
+  .quiz-play-timer { top: auto; bottom: 16px; right: 16px; left: 16px; text-align: center; }
+}
+
 .quiz-play-exit {
   padding: 14px 24px;
   background: var(--accent);

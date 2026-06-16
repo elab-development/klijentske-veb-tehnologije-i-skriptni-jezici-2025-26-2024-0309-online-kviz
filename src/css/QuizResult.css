@@ -184,3 +184,10 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 600px) {
+  .quiz-result-title { font-size: 22px; }
+  .quiz-result-card { padding: 20px 16px; max-width: 100%; }
+  .quiz-result-actions { flex-direction: column; }
+  .result-question-card { padding: 16px 14px; }
+}
+

@@ -164,12 +164,10 @@
 }
 
 @media (max-width: 600px) {
-  .profile-quizzes .quiz-card {
-    min-width: 160px;
-  }
-
-  .profile-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
+  .profile-quizzes .quiz-card { min-width: 160px; }
+  .profile-actions { flex-direction: column; align-items: stretch; }
+  .profile-user-info { gap: 14px; }
+  .profile-username { font-size: 20px; }
+  .profile-result-meta { flex-wrap: wrap; gap: 4px; }
+  .profile-result-card { padding: 12px 14px; }
 }

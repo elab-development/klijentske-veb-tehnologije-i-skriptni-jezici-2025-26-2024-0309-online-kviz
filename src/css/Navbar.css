@@ -106,8 +106,55 @@
   color: var(--text-primary);
 }
 
+/* ── Hamburger button ── */
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* ── Mobile menu dropdown ── */
+.navbar-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid var(--border);
+  padding: 6px 0;
+}
+
+.mobile-nav-link {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background: var(--bg-card-inner);
+  color: var(--text-primary);
+}
+
+/* ── Breakpoints ── */
 @media (max-width: 640px) {
-  .navbar-inner { gap: 12px; padding: 10px 14px; }
-  .nav-link span { display: none; }
-  .profile-text { display: none; }
+  .navbar-links  { display: none; }
+  .navbar-profile { display: none; }
+  .navbar-hamburger { display: flex; }
 }

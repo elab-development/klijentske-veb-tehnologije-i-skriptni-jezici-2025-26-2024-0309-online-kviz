@@ -97,19 +97,17 @@
   padding: 40px 0;
 }
 
+@media (max-width: 900px) {
+  .quiz-start { padding: 0 60px; }
+}
+
 @media (max-width: 600px) {
-  .quiz-start-meta {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .quiz-start-meta-right {
-    align-items: flex-start;
-  }
-
-  .quiz-start-actions .btn {
-    width: 100%;
-  }
+  .quiz-start { padding: 0; }
+  .quiz-start-meta { flex-direction: column; gap: 10px; }
+  .quiz-start-meta-right { align-items: flex-start; }
+  .quiz-start-actions { flex-direction: column; align-items: stretch; }
+  .quiz-start-actions .btn { width: 100%; }
+  .quiz-start-title { font-size: 22px; }
 }
 
 .quiz-start-actions {
