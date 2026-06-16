@@ -16,6 +16,7 @@ import QuizPlay from './pages/QuizPlay';
 import QuizResult from './pages/QuizResult';
 import QuizFlashcard from './pages/QuizFlashcard';
 import MyQuizzes from './pages/admin/MyQuizzes';
+import QuizEditor from './pages/admin/QuizEditor';
 
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/quiz/:id/flashcards" element={<QuizFlashcard />} />
           <Route path="/quiz/:id/result" element={<QuizResult />} />
           <Route path="/admin/my-quizzes" element={<MyQuizzes />} />
+          <Route path="/admin/quiz-editor/:id" element={<QuizEditor />} />
         </Routes>
       </BrowserRouter>
       </QuizProvider>

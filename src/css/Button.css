@@ -60,3 +60,13 @@
   color: var(--text-primary);
   border-color: var(--text-muted);
 }
+
+.btn--danger {
+  background: #dc2626;
+  color: var(--white);
+  border-color: #dc2626;
+}
+.btn--danger:hover:not(:disabled) {
+  background: #ef4444;
+  border-color: #ef4444;
+}
