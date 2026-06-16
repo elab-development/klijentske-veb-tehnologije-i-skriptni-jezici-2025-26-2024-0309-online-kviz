@@ -12,7 +12,8 @@ export default function Login() {
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
     const username = email.split('@')[0];
-    setUser({ username, email });
+    const isAdmin = username.toLowerCase() === 'admin';
+    setUser({ username, email, isAdmin });
     navigate('/');
   };
 

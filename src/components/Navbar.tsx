@@ -25,6 +25,15 @@ export default function Navbar() {
             </svg>
             Browse
           </Link>
+          {user?.isAdmin && (
+            <Link to="/admin/my-quizzes" className={`nav-link ${isActive('/admin/my-quizzes') ? 'active' : ''}`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+              My quizzes
+            </Link>
+          )}
           <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>

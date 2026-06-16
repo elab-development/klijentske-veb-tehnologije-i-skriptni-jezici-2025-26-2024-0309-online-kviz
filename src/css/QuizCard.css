@@ -17,13 +17,39 @@
   transform: translateY(-2px);
 }
 
+.quiz-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
 .quiz-card-image {
   width: 60px;
   height: 60px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
-  margin-bottom: 4px;
+}
+
+.quiz-card-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bg-section);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.quiz-card-edit-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  background: var(--bg-card);
 }
 
 .quiz-card-image img {
