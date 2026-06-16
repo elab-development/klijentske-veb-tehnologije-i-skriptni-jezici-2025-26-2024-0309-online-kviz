@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
@@ -37,6 +38,11 @@ export default function Profile() {
   const navigate = useNavigate();
   const { user, logout, quizResults } = useUser();
 
+  const PAGE_SIZE = 5;
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(quizResults.length / PAGE_SIZE);
+  const pageResults = quizResults.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
   const displayName = user?.username ?? 'Guest';
   const displayEmail = user?.email ?? '';
 
@@ -62,11 +68,20 @@ export default function Profile() {
       <div className="profile-section">
         <h3 className="profile-section-title">Recent Results</h3>
         {quizResults.length > 0 ? (
-          <div className="profile-results-list">
-            {quizResults.map((entry, i) => (
-              <ResultCard key={i} entry={entry} />
-            ))}
-          </div>
+          <>
+            <div className="profile-results-list">
+              {pageResults.map((entry, i) => (
+                <ResultCard key={i} entry={entry} />
+              ))}
+            </div>
+            {totalPages > 1 && (
+              <div className="browse-pagination">
+                <button className="browse-page-btn" onClick={() => setPage(p => p - 1)} disabled={page === 1}>← Prev</button>
+                <span className="browse-page-info">{page} / {totalPages}</span>
+                <button className="browse-page-btn" onClick={() => setPage(p => p + 1)} disabled={page === totalPages}>Next →</button>
+              </div>
+            )}
+          </>
         ) : (
           <p className="profile-no-results">No quiz results yet. Complete a quiz to see your history!</p>
         )}
