@@ -147,7 +147,7 @@ export const ALL_QUIZZES: Quiz[] = [
     categories: ['IT', 'School'],
     language: 'SRB',
     cards: arosCards,
-    imageUrl: '/src/assets/fon.png'
+    imageUrl: '/src/assets/peraperic.png'
   },
   {
     id: 7,

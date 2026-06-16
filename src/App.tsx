@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
+import { QuizProvider } from './context/QuizContext';
 import './index.css';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -20,6 +21,7 @@ import MyQuizzes from './pages/admin/MyQuizzes';
 export default function App() {
   return (
     <UserProvider>
+      <QuizProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -38,6 +40,7 @@ export default function App() {
           <Route path="/admin/my-quizzes" element={<MyQuizzes />} />
         </Routes>
       </BrowserRouter>
+      </QuizProvider>
     </UserProvider>
   );
 }

@@ -1,7 +1,7 @@
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
-import { ALL_QUIZZES } from '../data/quizzes';
+import { useQuizzes } from '../context/QuizContext';
 import '../css/QuizStart.css';
 
 function formatTimeLimit(seconds?: number): string {
@@ -16,8 +16,9 @@ export default function QuizStart() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: string })?.from ?? '/browse';
+  const { allQuizzes } = useQuizzes();
 
-  const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
+  const quiz = allQuizzes.find(q => q.id === Number(id));
 
   if (!quiz) {
     return (

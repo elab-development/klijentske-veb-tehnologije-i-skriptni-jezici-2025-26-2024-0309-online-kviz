@@ -3,12 +3,13 @@ import { useUser } from '../../context/UserContext';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import QuizList from '../../components/QuizList';
-import { ALL_QUIZZES } from '../../data/quizzes';
+import { useQuizzes } from '../../context/QuizContext';
 import '../../css/MyQuizzes.css';
 
 export default function MyQuizzes() {
   const { user } = useUser();
   const navigate = useNavigate();
+  const { allQuizzes } = useQuizzes();
 
   if (!user?.isAdmin) {
     return (
@@ -18,7 +19,7 @@ export default function MyQuizzes() {
     );
   }
 
-  const myQuizzes = ALL_QUIZZES.filter(q => q.author.toLowerCase() === user.username.toLowerCase());
+  const myQuizzes = allQuizzes.filter(q => q.author.toLowerCase() === user.username.toLowerCase());
   const popular = myQuizzes.filter(q => q.rating >= 7);
 
   return (

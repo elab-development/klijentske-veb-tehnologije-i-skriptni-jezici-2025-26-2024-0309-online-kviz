@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import TextQuestionComponent from '../components/questions/TextQuestion';
 import SingleChoiceQuestionComponent from '../components/questions/SingleChoiceQuestion';
 import MultipleChoiceQuestionComponent from '../components/questions/MultipleChoiceQuestion';
-import { ALL_QUIZZES } from '../data/quizzes';
+import { useQuizzes } from '../context/QuizContext';
 import { shuffle } from '../utils/shuffle';
 import { QuizSession } from '../models/QuizSession';
 import type { IQuizSession } from '../models/IQuizSession';
@@ -21,7 +21,8 @@ export default function QuizPlay() {
   const navigate = useNavigate();
   const [session, setSession] = useState<IQuizSession>(() => new QuizSession());
 
-  const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
+  const { allQuizzes } = useQuizzes();
+  const quiz = allQuizzes.find(q => q.id === Number(id));
 
   const [timeRemaining, setTimeRemaining] = useState<number | null>(
     quiz?.type === 'form' && quiz.timeLimit ? quiz.timeLimit : null

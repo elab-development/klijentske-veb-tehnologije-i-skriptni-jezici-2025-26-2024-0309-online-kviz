@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
-import { ALL_QUIZZES } from '../data/quizzes';
+import { useQuizzes } from '../context/QuizContext';
 import type { Question } from '../models/Question';
 import { QuizResultModel } from '../models/QuizResultModel';
 import { useUser } from '../context/UserContext';
@@ -108,8 +108,9 @@ export default function QuizResult() {
 
   const { addQuizResult } = useUser();
   const savedRef = useRef(false);
+  const { allQuizzes } = useQuizzes();
 
-  const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
+  const quiz = allQuizzes.find(q => q.id === Number(id));
 
   useEffect(() => {
     if (savedRef.current || !quiz || quiz.type !== 'form' || !state) return;

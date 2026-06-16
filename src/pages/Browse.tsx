@@ -2,16 +2,14 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import Layout from '../components/Layout';
 import QuizList from '../components/QuizList';
 import QuizCard from '../components/QuizCard';
-import { ALL_QUIZZES, FEATURED, RECOMMENDED } from '../data/quizzes';
+import { FEATURED, RECOMMENDED } from '../data/quizzes';
+import { useQuizzes } from '../context/QuizContext';
 import '../css/Browse.css';
-
-const CATEGORIES = Array.from(
-  new Set(ALL_QUIZZES.flatMap(q => q.categories))
-).sort();
 
 const PAGE_SIZE = 6;
 
 export default function Browse() {
+  const { allQuizzes } = useQuizzes();
   const [query, setQuery] = useState('');
   const [categories, setCategories] = useState<string[]>([]);
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -33,11 +31,16 @@ export default function Browse() {
     setPage(1);
   }, [query, categories]);
 
+  const allCategories = useMemo(
+    () => Array.from(new Set(allQuizzes.flatMap(q => q.categories))).sort(),
+    [allQuizzes]
+  );
+
   const isSearching = query.trim().length > 0 || categories.length > 0;
 
   const results = useMemo(() => {
     const search = query.trim().toLowerCase();
-    return ALL_QUIZZES.filter(quiz => {
+    return allQuizzes.filter(quiz => {
       const matchesText =
         !search ||
         quiz.title.toLowerCase().includes(search) ||
@@ -49,12 +52,12 @@ export default function Browse() {
         categories.every(c => quiz.categories.includes(c));
       return matchesText && matchesCategory;
     });
-  }, [query, categories]);
+  }, [query, categories, allQuizzes]);
 
   const totalPages = Math.ceil(results.length / PAGE_SIZE);
   const pageResults = results.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-  const availableCategories = CATEGORIES.filter(c => !categories.includes(c));
+  const availableCategories = allCategories.filter(c => !categories.includes(c));
 
   const addCategory = (category: string) => {
     setCategories(prev => [...prev, category]);

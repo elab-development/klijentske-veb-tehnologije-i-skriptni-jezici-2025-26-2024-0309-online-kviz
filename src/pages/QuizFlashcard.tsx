@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { ALL_QUIZZES } from '../data/quizzes';
+import { useQuizzes } from '../context/QuizContext';
 import '../css/QuizFlashcard.css';
 
 function formatTime(seconds: number): string {
@@ -13,6 +13,7 @@ function formatTime(seconds: number): string {
 export default function QuizFlashcard() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { allQuizzes } = useQuizzes();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -22,7 +23,7 @@ export default function QuizFlashcard() {
     return () => clearInterval(timer);
   }, []);
 
-  const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
+  const quiz = allQuizzes.find(q => q.id === Number(id));
 
   if (!quiz) {
     return (
