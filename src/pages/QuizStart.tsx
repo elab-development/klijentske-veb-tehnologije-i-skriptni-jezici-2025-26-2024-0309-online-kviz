@@ -1,5 +1,6 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
+import Button from '../components/Button';
 import { ALL_QUIZZES } from '../data/quizzes';
 import '../css/QuizStart.css';
 
@@ -13,6 +14,8 @@ function formatTimeLimit(seconds?: number): string {
 export default function QuizStart() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = (location.state as { from?: string })?.from ?? '/browse';
 
   const quiz = ALL_QUIZZES.find(q => q.id === Number(id));
 
@@ -60,15 +63,10 @@ export default function QuizStart() {
         </div>
 
         <div className="quiz-start-actions">
-          <button className="quiz-start-btn-back" onClick={() => navigate(-1)}>
-            ← Back
-          </button>
-          <button
-            className="quiz-start-btn"
-            onClick={() => navigate(quiz.type === 'flashcards' ? `/quiz/${quiz.id}/flashcards` : `/quiz/${quiz.id}/play`)}
-          >
+          <Button variant="outline" onClick={() => navigate(from)}>← Back</Button>
+          <Button onClick={() => navigate(quiz.type === 'flashcards' ? `/quiz/${quiz.id}/flashcards` : `/quiz/${quiz.id}/play`)}>
             {quiz.type === 'flashcards' ? `Study ${quiz.questionCount} cards` : `Start answering ${quiz.questionCount} questions`}
-          </button>
+          </Button>
         </div>
       </div>
     </Layout>

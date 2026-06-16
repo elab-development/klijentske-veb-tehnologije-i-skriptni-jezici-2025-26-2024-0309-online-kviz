@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 import '../css/ChangePassword.css';
 
 export default function ChangePassword() {
@@ -83,12 +84,8 @@ export default function ChangePassword() {
             {success && <p className="chpw-success">Password changed! Redirecting...</p>}
 
             <div className="chpw-actions">
-              <button className="chpw-btn chpw-btn--primary" onClick={handleSubmit}>
-                Save changes
-              </button>
-              <button className="chpw-btn chpw-btn--ghost" onClick={() => navigate('/profile')}>
-                Cancel
-              </button>
+              <Button onClick={handleSubmit}>Save changes</Button>
+              <Button variant="ghost" onClick={() => navigate('/profile')}>Cancel</Button>
             </div>
           </div>
         </div>

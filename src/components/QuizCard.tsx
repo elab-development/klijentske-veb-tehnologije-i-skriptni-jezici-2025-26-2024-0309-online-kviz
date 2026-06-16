@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import type { Quiz } from '../models/Quiz';
 import { useUser } from '../context/UserContext';
 import '../css/QuizCard.css';
@@ -10,11 +10,12 @@ interface QuizCardProps {
 export default function QuizCard({ quiz }: QuizCardProps) {
   const { user } = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const isOwner = user?.isAdmin && user.username.toLowerCase() === quiz.author.toLowerCase();
 
   return (
-    <Link to={`/quiz/${quiz.id}`} className="quiz-card">
+    <Link to={`/quiz/${quiz.id}`} state={{ from: location.pathname }} className="quiz-card">
       <div className="quiz-card-top">
         <div className="quiz-card-image">
           {quiz.imageUrl ? (

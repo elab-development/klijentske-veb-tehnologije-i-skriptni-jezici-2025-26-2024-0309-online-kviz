@@ -5,24 +5,6 @@
   margin-bottom: 8px;
 }
 
-.my-quizzes-create-btn {
-  padding: 10px 22px;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius-sm);
-  color: var(--white);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 800;
-  white-space: nowrap;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.my-quizzes-create-btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-1px);
-}
-
 .my-quizzes-title {
   font-size: 24px;
   font-weight: 900;

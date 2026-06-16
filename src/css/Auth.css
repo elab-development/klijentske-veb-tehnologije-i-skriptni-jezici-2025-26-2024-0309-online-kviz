@@ -66,29 +66,6 @@
   border-color: var(--accent);
 }
 
-.auth-btn {
-  width: 100%;
-  padding: 13px;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius-sm);
-  color: var(--white);
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.auth-btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-1px);
-}
-
-.auth-btn:active {
-  transform: translateY(0);
-}
-
 .auth-divider {
   display: flex;
   align-items: center;

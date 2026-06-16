@@ -163,57 +163,7 @@
   align-items: center;
 }
 
-.profile-btn {
-  padding: 12px 28px;
-  border-radius: var(--radius-sm);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  border: 2px solid transparent;
-  transition: background 0.2s, color 0.2s, transform 0.1s, border-color 0.2s;
-}
-
-.profile-btn:hover  { transform: translateY(-1px); }
-.profile-btn:active { transform: translateY(0);    }
-
-.profile-btn--primary {
-  background: var(--accent);
-  color: var(--white);
-}
-
-.profile-btn--primary:hover {
-  background: var(--accent-light);
-}
-
-.profile-btn--secondary {
-  background: var(--bg-card-inner);
-  color: var(--text-primary);
-  border-color: var(--border);
-}
-
-.profile-btn--secondary:hover {
-  background: var(--accent-dim);
-  border-color: var(--accent-dim);
-  color: var(--white);
-}
-
-.profile-btn--ghost {
-  background: transparent;
-  color: var(--text-muted);
-  border-color: var(--border);
-}
-
-.profile-btn--ghost:hover {
-  color: var(--text-primary);
-  border-color: var(--text-muted);
-}
-
 @media (max-width: 600px) {
-  .profile-card {
-    padding: 24px 18px 24px;
-  }
-
   .profile-quizzes .quiz-card {
     min-width: 160px;
   }
@@ -221,9 +171,5 @@
   .profile-actions {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .profile-btn {
-    text-align: center;
   }
 }

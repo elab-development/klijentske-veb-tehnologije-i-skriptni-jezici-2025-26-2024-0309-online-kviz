@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import Button from '../components/Button';
 import '../css/Contact.css';
 
 export default function Contact() {
@@ -36,9 +37,7 @@ export default function Contact() {
           </div>
         )}
 
-        <button className="contact-send-btn" onClick={handleSend}>
-          Send
-        </button>
+        <Button onClick={handleSend}>Send</Button>
       </section>
         
     </Layout>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import Button from '../components/Button';
 import '../css/Auth.css';
 
 export default function Register() {
@@ -42,9 +43,7 @@ export default function Register() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button className="auth-btn" onClick={handleSubmit}>
-            Register
-          </button>
+          <Button fullWidth onClick={handleSubmit}>Register</Button>
 
           <div className="auth-divider"><span>or</span></div>
 

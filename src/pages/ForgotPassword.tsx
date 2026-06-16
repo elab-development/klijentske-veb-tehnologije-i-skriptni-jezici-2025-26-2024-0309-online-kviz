@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 import '../css/Auth.css';
 
 export default function ForgotPassword() {
@@ -68,9 +69,7 @@ export default function ForgotPassword() {
                 onChange={e => setEmail(e.target.value)}
               />
               
-              <button className="auth-btn" onClick={handleEmailSubmit}>
-                Send code
-              </button>
+              <Button fullWidth onClick={handleEmailSubmit}>Send code</Button>
             </div>
 
             <div className="auth-footer">
@@ -108,12 +107,8 @@ export default function ForgotPassword() {
                 ))}
               </div>
 
-              <button className="auth-btn auth-btn-outline" onClick={handleConfirm}>
-                Confirm
-              </button>
-              <button className="auth-btn" onClick={handleResend}>
-                Re-send code
-              </button>
+              <Button variant="ghost" fullWidth onClick={handleConfirm}>Confirm</Button>
+              <Button fullWidth onClick={handleResend}>Re-send code</Button>
             </div>
           </>
         )}

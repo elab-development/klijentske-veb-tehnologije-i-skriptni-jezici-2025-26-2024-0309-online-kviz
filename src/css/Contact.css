@@ -72,29 +72,6 @@
   text-align: center;
 }
 
-.contact-send-btn {
-  padding: 13px 64px;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius-sm);
-  color: var(--white);
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  transition: background 0.2s, transform 0.1s;
-  margin-top: 4px;
-}
-
-.contact-send-btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-1px);
-}
-
-.contact-send-btn:active {
-  transform: translateY(0);
-}
-
 @media (max-width: 600px) {
   .contact-card {
     padding: 28px 18px 24px;

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import Layout from '../../components/Layout';
+import Button from '../../components/Button';
 import QuizList from '../../components/QuizList';
 import { ALL_QUIZZES } from '../../data/quizzes';
 import '../../css/MyQuizzes.css';
@@ -23,9 +24,7 @@ export default function MyQuizzes() {
   return (
     <Layout>
       <div className="my-quizzes-header">
-        <button className="my-quizzes-create-btn" onClick={() => navigate('/admin/quiz-editor/new')}>
-          Create new quiz
-        </button>
+        <Button onClick={() => navigate('/admin/quiz-editor/new')}>Create new quiz</Button>
         <h1 className="my-quizzes-title">My quizzes</h1>
       </div>
 

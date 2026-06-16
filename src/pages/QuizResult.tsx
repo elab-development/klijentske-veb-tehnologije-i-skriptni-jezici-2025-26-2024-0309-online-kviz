@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
+import Button from '../components/Button';
 import { ALL_QUIZZES } from '../data/quizzes';
 import type { Question } from '../models/Question';
 import { QuizResultModel } from '../models/QuizResultModel';
@@ -155,9 +156,7 @@ export default function QuizResult() {
               <QuestionResult key={q.id} question={q} result={result} />
             ))}
 
-            <button className="result-exit-btn" onClick={() => setShowDetails(false)}>
-              Exit
-            </button>
+            <Button onClick={() => setShowDetails(false)}>Exit</Button>
           </div>
         </div>
       </Layout>
@@ -199,19 +198,10 @@ export default function QuizResult() {
           </div>
 
           <div className="quiz-result-actions">
-            <button
-              className="quiz-result-btn quiz-result-btn--secondary"
-              onClick={() => setShowDetails(true)}
-              disabled={quiz.type !== 'form'}
-            >
+            <Button variant="secondary" onClick={() => setShowDetails(true)} disabled={quiz.type !== 'form'}>
               View your results
-            </button>
-            <button
-              className="quiz-result-btn quiz-result-btn--primary"
-              onClick={() => navigate(`/quiz/${id}`)}
-            >
-              Back
-            </button>
+            </Button>
+            <Button onClick={() => navigate(`/quiz/${id}`)}>Back</Button>
           </div>
         </div>
       </div>

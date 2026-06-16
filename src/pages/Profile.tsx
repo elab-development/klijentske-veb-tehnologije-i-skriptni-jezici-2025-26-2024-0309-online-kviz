@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
+import Button from '../components/Button';
 import { useUser } from '../context/UserContext';
 import type { QuizResultEntry } from '../context/UserContext';
 import '../css/Profile.css';
@@ -72,18 +73,8 @@ export default function Profile() {
       </div>
 
       <div className="profile-actions">
-        <button
-          className="profile-btn profile-btn--primary"
-          onClick={() => navigate('/changepassword')}
-        >
-          Change password
-        </button>
-        <button
-          className="profile-btn profile-btn--secondary"
-          onClick={handleLogout}
-        >
-          Log out
-        </button>
+        <Button onClick={() => navigate('/changepassword')}>Change password</Button>
+        <Button variant="secondary" onClick={handleLogout}>Log out</Button>
       </div>
     </Layout>
   );
