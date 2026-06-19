@@ -101,3 +101,36 @@
 @media (max-width: 480px) {
   .home-carousel { grid-template-columns: 1fr; }
 }
+
+.home-quote-skeleton {
+  background: var(--bg-section);
+  border: 3px solid var(--border-light);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-quote-skeleton-text {
+  height: 16px;
+  width: 80%;
+  background: linear-gradient(90deg, var(--border) 25%, var(--border-light) 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.home-quote-skeleton-author {
+  height: 14px;
+  width: 30%;
+  background: linear-gradient(90deg, var(--border) 25%, var(--border-light) 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

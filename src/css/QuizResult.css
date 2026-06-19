@@ -39,6 +39,13 @@
   text-align: center;
 }
 
+.quiz-result-score {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+  text-align: center;
+}
+
 .quiz-result-info {
   display: flex;
   flex-direction: column;
@@ -189,5 +196,19 @@
   .quiz-result-card { padding: 20px 16px; max-width: 100%; }
   .quiz-result-actions { flex-direction: column; }
   .result-question-card { padding: 16px 14px; }
+}
+
+.confetti-piece {
+  position: fixed;
+  top: -10px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 

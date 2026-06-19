@@ -128,6 +128,35 @@ export default function QuizResult() {
     });
   }, []);
 
+  useEffect(() => {
+  if (!quiz || quiz.type !== 'form' || !state) return;
+  const result = new QuizResultModel(quiz, state.answers, state.timeElapsed, state.timeRemaining);
+  if (result.getScorePercent() < 80) return;
+
+  const colors = ['#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590'];
+  const pieces: HTMLDivElement[] = [];
+
+  for (let i = 0; i < 80; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = `${Math.random() * 100}vw`;
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.animationDelay = `${Math.random() * 2}s`;
+    el.style.animationDuration = `${2 + Math.random() * 2}s`;
+    el.style.width = `${6 + Math.random() * 8}px`;
+    el.style.height = `${6 + Math.random() * 8}px`;
+    document.body.appendChild(el);
+    pieces.push(el);
+  }
+
+  const timeout = setTimeout(() => pieces.forEach(p => p.remove()), 5000);
+
+  return () => {
+    clearTimeout(timeout);
+    pieces.forEach(p => p.remove());
+  };
+}, []);
+
   if (!quiz || !state) {
     return (
       <Layout>
@@ -172,6 +201,15 @@ export default function QuizResult() {
 
         <div className="quiz-result-card">
           <p className="quiz-result-submitted">Your results have been submitted</p>
+          {quiz.type === 'form' && (() => {
+            const result = new QuizResultModel(quiz, state.answers, state.timeElapsed, state.timeRemaining);
+            const score = result.getScore();
+            return (
+              <p className="quiz-result-score">
+                Score: {result.getScorePercent()}% &nbsp;·&nbsp; {score.correct}/{score.total} correct
+              </p>
+            );
+          })()}
 
           <div className="quiz-result-info">
             <p>Time elapsed: {formatTime(state.timeElapsed)}</p>

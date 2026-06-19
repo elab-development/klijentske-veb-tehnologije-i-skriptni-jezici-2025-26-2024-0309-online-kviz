@@ -30,7 +30,9 @@ export default function QuizList({ title, quizzes }: QuizListProps) {
       </div>
       <div className="home-carousel-wrap">
         <div className="home-carousel">
-          {visible.map(q => <QuizCard key={q.id} quiz={q} />)}
+          {visible.map((q, i) => (
+            <QuizCard key={q.id} quiz={q} style={{ animationDelay: `${i * 0.17}s` }} />
+          ))}
         </div>
         <button
           className="carousel-arrow"

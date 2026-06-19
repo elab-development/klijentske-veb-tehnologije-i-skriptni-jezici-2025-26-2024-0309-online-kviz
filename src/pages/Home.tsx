@@ -24,12 +24,17 @@ export default function HomePage() {
   return (
     <Layout>
       <h1 className="home-greeting">Welcome back, {user?.username ?? 'Guest'}!</h1>
-      {quote && (
+      {quote ? (
         <div className="home-quote">
           <p className="home-quote-text">"{quote.quote}"</p>
           <span className="home-quote-author">— {quote.author}</span>
         </div>
-      )}
+      ) : (
+        <div className="home-quote-skeleton">
+          <div className="home-quote-skeleton-text" />
+          <div className="home-quote-skeleton-author" />
+        </div>
+      )} 
       <QuizList title="Recommended" quizzes={RECOMMENDED} />
       <QuizList title="Featured" quizzes={FEATURED} />
     </Layout>

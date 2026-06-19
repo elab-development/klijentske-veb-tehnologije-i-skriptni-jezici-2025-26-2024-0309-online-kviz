@@ -5,9 +5,10 @@ import '../css/QuizCard.css';
 
 interface QuizCardProps {
   quiz: Quiz;
+  style?: React.CSSProperties;
 }
 
-export default function QuizCard({ quiz }: QuizCardProps) {
+export default function QuizCard({ quiz, style }: QuizCardProps) {
   const { user } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,7 +16,7 @@ export default function QuizCard({ quiz }: QuizCardProps) {
   const isOwner = user?.isAdmin && user.username.toLowerCase() === quiz.author.toLowerCase();
 
   return (
-    <Link to={`/quiz/${quiz.id}`} state={{ from: location.pathname }} className="quiz-card">
+    <Link to={`/quiz/${quiz.id}`} state={{ from: location.pathname }} className="quiz-card" style={style}>
       <div className="quiz-card-top">
         <div className="quiz-card-image">
           {quiz.imageUrl ? (
