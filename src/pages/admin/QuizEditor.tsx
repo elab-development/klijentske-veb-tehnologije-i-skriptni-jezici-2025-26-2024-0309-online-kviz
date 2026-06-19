@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
@@ -7,8 +7,12 @@ import { useQuizzes } from '../../context/QuizContext';
 import type { QuizType } from '../../models/Quiz';
 import '../../css/QuizEditor.css';
 
-const LANGUAGES = ['ENG', 'SRB', 'DEU', 'FRA', 'ESP', 'ITA'];
 const TITLE_MAX = 50;
+
+interface Language {
+  code: string;
+  name: string;
+}
 
 function toSeconds(str: string): number | undefined {
   const parts = str.trim().split(':').map(Number);
@@ -46,8 +50,18 @@ export default function QuizEditor() {
   const [catOpen, setCatOpen] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
+  const [languages, setLanguages] = useState<Language[]>([]);
+  const [langsLoading, setLangsLoading] = useState(true);
 
   const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    fetch('https://libretranslate.com/languages')
+      .then(r => r.json())
+      .then((data: Language[]) => setLanguages(data))
+      .catch(() => {})
+      .finally(() => setLangsLoading(false));
+  }, []);
 
   if (!user?.isAdmin) {
     return (
@@ -182,7 +196,10 @@ export default function QuizEditor() {
                 onChange={e => setLanguage(e.target.value)}
               >
                 <option value="">—</option>
-                {LANGUAGES.map(l => <option key={l} value={l}>{l}</option>)}
+                {langsLoading
+                  ? <option disabled>Loading...</option>
+                  : languages.map(l => <option key={l.code} value={l.name}>{l.name}</option>)
+                }
               </select>
             </div>
           </div>
