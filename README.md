@@ -52,6 +52,7 @@ src/
 ├── assets/          # Slike i ostali statički resursi
 ├── components/      # Reusable komponente (Navbar, Footer, QuizCard...)
 │   └── questions/   # Komponente za tipove pitanja
+├── context/         # React konteksti (QuizContext, UserContext)
 ├── css/             # CSS fajlovi po stranicama
 ├── data/            # Placeholder podaci (kvizovi, pitanja)
 ├── models/          # TypeScript interfejsi (Quiz, Question, Flashcard)

@@ -4,11 +4,9 @@ import type { Question } from '../../models/Question';
 import type { FormQuiz } from '../../models/Quiz';
 import '../../css/FormQuestionsEditor.css';
 
-// ── Draft types (flat answer list, easier to edit) ───────────────────────────
-
 interface AnswerDraft { id: number; text: string; correct: boolean; }
 
-interface TextDraft   { id: number; type: 'text';            question: string; answers: string; }
+interface TextDraft   { id: number; type: 'text'; question: string; answers: string; }
 interface ChoiceDraft { id: number; type: 'single_choice' | 'multiple_choice'; question: string; answers: AnswerDraft[]; }
 type QuestionDraft = TextDraft | ChoiceDraft;
 
@@ -18,12 +16,10 @@ const HINTS: Record<QuestionDraft['type'], string> = {
   multiple_choice: 'Player picks all correct answers. Multiple options can be marked correct.',
 };
 
-// ── Unique IDs ────────────────────────────────────────────────────────────────
 
 let _uid = Date.now();
 const uid = () => ++_uid;
 
-// ── Model ↔ Draft converters ──────────────────────────────────────────────────
 
 function toDraft(q: Question): QuestionDraft {
   if (q.type === 'text') {
@@ -77,7 +73,6 @@ function blankDraft(type: QuestionDraft['type']): QuestionDraft {
   };
 }
 
-// ── AddQuestionButton ─────────────────────────────────────────────────────────
 
 function AddQuestionButton({ onAdd }: { onAdd: (type: QuestionDraft['type']) => void }) {
   const [open, setOpen] = useState(false);
@@ -99,7 +94,6 @@ function AddQuestionButton({ onAdd }: { onAdd: (type: QuestionDraft['type']) => 
   );
 }
 
-// ── QuestionCard ──────────────────────────────────────────────────────────────
 
 function QuestionCard({ q, onUpdate, onDelete, onMoveUp, onMoveDown, isFirst, isLast }: {
   q: QuestionDraft;
@@ -153,7 +147,7 @@ function QuestionCard({ q, onUpdate, onDelete, onMoveUp, onMoveDown, isFirst, is
     );
   }
 
-  // choice questions
+
   const isMultiple = q.type === 'multiple_choice';
   const choiceAnswers = q.answers as AnswerDraft[];
 
@@ -205,7 +199,6 @@ function QuestionCard({ q, onUpdate, onDelete, onMoveUp, onMoveDown, isFirst, is
   );
 }
 
-// ── Main export ───────────────────────────────────────────────────────────────
 
 export default function FormQuestionsEditor({ quiz, onSave, onExit }: {
   quiz: FormQuiz;
